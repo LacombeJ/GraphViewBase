@@ -173,15 +173,15 @@ namespace GraphViewBase {
 
             if (mousePos.x <= k_PanAreaWidth) {
                 effectiveSpeed.x = -((k_PanAreaWidth - mousePos.x) / k_PanAreaWidthAndMinSpeedFactor) * k_PanSpeed;
-            } else if (mousePos.x >= m_GridBackground.layout.width - k_PanAreaWidth) {
-                effectiveSpeed.x = (mousePos.x - (m_GridBackground.layout.width - k_PanAreaWidth))
+            } else if (mousePos.x >= layout.width - k_PanAreaWidth) {
+                effectiveSpeed.x = (mousePos.x - (layout.width - k_PanAreaWidth))
                     / k_PanAreaWidthAndMinSpeedFactor * k_PanSpeed;
             }
 
             if (mousePos.y <= k_PanAreaWidth) {
                 effectiveSpeed.y = -((k_PanAreaWidth - mousePos.y) / k_PanAreaWidthAndMinSpeedFactor) * k_PanSpeed;
-            } else if (mousePos.y >= m_GridBackground.layout.height - k_PanAreaWidth) {
-                effectiveSpeed.y = (mousePos.y - (m_GridBackground.layout.height - k_PanAreaWidth))
+            } else if (mousePos.y >= layout.height - k_PanAreaWidth) {
+                effectiveSpeed.y = (mousePos.y - (layout.height - k_PanAreaWidth))
                     / k_PanAreaWidthAndMinSpeedFactor * k_PanSpeed;
             }
 
