@@ -14,6 +14,7 @@ namespace GraphViewBase {
         private int m_Layer;
         private bool m_LayerIsInline;
         private bool m_Selected;
+        private bool m_Hovered;
 
         protected GraphElement() {
             ClearClassList();
@@ -81,6 +82,11 @@ namespace GraphViewBase {
                     if (Graph != null) Graph.ContentContainer.RemoveFromDragSelection(this);
                 }
             }
+        }
+
+        public virtual bool Hovered {
+            get => m_Hovered;
+            set => m_Hovered = value;
         }
         #endregion
 

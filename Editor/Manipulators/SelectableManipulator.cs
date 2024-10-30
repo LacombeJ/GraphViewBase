@@ -25,11 +25,23 @@ namespace GraphViewBase {
             m_Selectable = target as ISelectable;
             if (m_Selectable == null) { throw new("SelectableManipulator can only be added to ISelectable elements"); }
             target.RegisterCallback<MouseDownEvent>(OnMouseDown);
+            target.RegisterCallback<MouseEnterEvent>(OnMouseEnter);
+            target.RegisterCallback<MouseLeaveEvent>(OnMouseLeave);
         }
 
         protected override void UnregisterCallbacksFromTarget() {
             target.UnregisterCallback<MouseDownEvent>(OnMouseDown);
+            target.UnregisterCallback<MouseEnterEvent>(OnMouseEnter);
+            target.UnregisterCallback<MouseLeaveEvent>(OnMouseLeave);
             m_Selectable = null;
+        }
+
+        protected void OnMouseEnter(MouseEnterEvent e) {
+            m_Selectable.Hovered = true;
+        }
+
+        protected void OnMouseLeave(MouseLeaveEvent e) {
+            m_Selectable.Hovered = false;
         }
 
         protected void OnMouseDown(MouseDownEvent e) {

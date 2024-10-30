@@ -81,6 +81,16 @@ namespace GraphViewBase {
                     OutputColor = ColorUnselected;
                     EdgeWidth = EdgeWidthUnselected;
                 }
+                MarkDirtyRepaint();
+            }
+        }
+
+        public override bool Hovered {
+            get => base.Hovered;
+            set {
+                if (base.Hovered == value) { return; }
+                base.Hovered = value;
+                MarkDirtyRepaint();
             }
         }
 
@@ -419,7 +429,26 @@ namespace GraphViewBase {
             Profiler.EndSample();
         }
 
-        private void OnGenerateVisualContent(MeshGenerationContext mgc) {
+        private Color DimColor(Color color, float amount) {
+            Color damped = color * (1 - amount);
+            damped.a = color.a;
+            return damped;
+        }
+
+        private Color Colorize(Color color) {
+            if (Selected) {
+                return DimColor(color, 0.0f);
+            }
+            else if (Hovered) {
+                return DimColor(color, 0.25f);
+            }
+            else {
+                return DimColor(color, 0.5f);
+            }
+        }
+
+        private void OnGenerateVisualContent(MeshGenerationContext mgc)
+        {
             if (EdgeWidth <= 0 || Graph == null) { return; }
 
             UpdateRenderPoints();
@@ -427,8 +456,8 @@ namespace GraphViewBase {
                 return; // Don't draw anything
             }
 
-            Color outColor = OutputColor;
-            Color inColor = InputColor;
+            Color outColor = Colorize(OutputColor);
+            Color inColor = Colorize(InputColor);
 
             int cpt = m_RenderPoints.Count;
             Painter2D painter2D = mgc.painter2D;
