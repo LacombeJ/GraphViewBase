@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 namespace GraphViewBase {
     public class Edge : BaseEdge {
-        public const float k_MinEdgeWidth = 1.75f;
+        public const float k_MinEdgeWidth = 1.0f;
         private const float k_EndPointRadius = 4.0f;
         private const float k_InterceptWidth = 6.0f;
         private const float k_EdgeLengthFromPort = 12.0f;
